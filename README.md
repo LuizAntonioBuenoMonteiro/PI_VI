@@ -9,6 +9,11 @@ Ferramentas utilizadas:
 - Biblioteca Kivy
 - Banco de dados Firebase
 
+Tema norteador:
+- Aplicações para smartphone com acesso a banco de dados na nuvem.
+
+Deve-se identificar o que são "aplicações para smartphones", quais tipos existentes; a evolução dessasa aplicações móveis e os principais requisitos na implementação e disponibilização dessas aplicações. 
+
 Grupo:
 @gracieleo
 @LuizAntonioBuenoMonteiro
