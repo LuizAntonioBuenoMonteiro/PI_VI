@@ -15,6 +15,7 @@ Screen:
             left_action_items: [['menu', lambda x: x]]
             right_action_items: [['dots-vertical', lambda x: x]]
         TelaLogin:
+        
 <SenhaCard>:
     id: card
     orientation: 'vertical'
