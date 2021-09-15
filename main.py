@@ -28,7 +28,7 @@ Screen:
         MDLabel:
             text: 'Mudar senha'
             theme_text_color: 'Custom'
-            text_color: 1, 1, 1, 1
+            text_color: 1, 1, 1, 0.9
         MDIconButton:
             theme_text_color: 'Custom'
             icon: 'close'
