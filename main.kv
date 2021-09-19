@@ -1,0 +1,103 @@
+Screen:
+    BoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+            title: 'MyApp'
+            left_action_items: [['menu', lambda x: x]]
+            right_action_items: [['dots-vertical', lambda x: x]]
+        TelaManager:
+
+<TelaManager>:
+
+    MenuCockpit_principal:
+        name:'MenuCockpit_principal'
+        id: MenuCockpit_principal
+
+    MenuCockpit_Frutas:
+        name:'MenuCockpit_Frutas'
+        id: MenuCockpit_Frutas
+
+    MenuCockpit_Bebidas:
+        name:'MenuCockpit_Bebidas'
+        id: MenuCockpit_Bebidas
+
+    MenuCockpit_Massas:
+        name:'MenuCockpit_Massas'
+        id: MenuCockpit_Massas
+
+    MenuCockpit_Derivados:
+        name:'MenuCockpit_Derivados'
+        id: MenuCockpit_Derivados
+
+
+<MenuCockpit_principal>:
+    BoxLayout:
+        orientation:'vertical'
+        Button:
+            background_normal :'frutas.jpg'
+            id: frutas
+            size_hint_x: .2
+            text:'Frutas'
+            pos_hint: {'center_x': .2, 'center_y': .2}
+            on_release: root.manager.current = 'MenuCockpit_Frutas'
+        Button:
+            background_normal :'bebidas.jpg'
+            id: Bebidas
+            size_hint_x: .2
+            text:'Bebidas'
+            pos_hint: {'center_x': .4, 'center_y': .2}
+            on_release: root.manager.current = 'MenuCockpit_Bebidas'
+
+        Button:
+            id: Massas
+            background_normal :'massas.jpg'
+            size_hint_x: .2
+            text:'Massas'
+            pos_hint: {'center_x': .6, 'center_y': .3}
+            on_release: root.manager.current = 'MenuCockpit_Massas'
+
+        Button:
+            id: Derivados
+            background_normal :'derivados.jpg'
+            size_hint_x: .2
+            text:'Derivados'
+            pos_hint: {'center_x': .8, 'center_y': .3}
+            on_release: root.manager.current = 'MenuCockpit_Derivados'
+
+
+<MenuCockpit_Frutas>:
+    BoxLayout:
+        orientation:'vertical'
+        Button:
+            text:'Frutas'
+        Button:
+            text:'Voltar'
+            on_release: root.manager.current = 'MenuCockpit_principal'
+
+
+<MenuCockpit_Bebidas>:
+    BoxLayout:
+        orientation:'vertical'
+        Button:
+            text:'Bebidas'
+        Button:
+            text:'Voltar'
+            on_release: root.manager.current = 'MenuCockpit_principal'
+
+<MenuCockpit_Massas>:
+    BoxLayout:
+        orientation:'vertical'
+        Button:
+            text:'Massas'
+        Button:
+            text:'Voltar'
+            on_release: root.manager.current = 'MenuCockpit_principal'
+
+<MenuCockpit_Derivados>:
+    BoxLayout:
+        orientation:'vertical'
+        Button:
+            text:'Derivados'
+        Button:
+            text:'Voltar'
+            on_release: root.manager.current = 'MenuCockpit_principal'
