@@ -15,7 +15,36 @@ Screen:
             left_action_items: [['menu', lambda x: x]]
             right_action_items: [['dots-vertical', lambda x: x]]
         TelaLogin:
-        
+
+<TelaCadastro>:
+    id: cadastro
+    orientation: 'vertical'
+    size_hint: .7, .7
+    pos_hint: {'center_x': .5, 'center_y': .5}
+    MDBoxLayout:
+        size_hint_y: .2
+        padding: [25, 0, 25, 0]
+        md_bg_color: app.theme_cls.primary_color
+        MDLabel:
+            text: 'Faça o seu cadastro'
+            theme_text_color: 'Custom'
+            text_color: 1, 1, 1, 0.9
+        MDIconButton:
+            theme_text_color: 'Custom'
+            icon: 'close'
+            text_color: 1, 1, 1, 1
+            on_release: root.fechar()
+    MDFloatLayout:
+        MDTextField:
+            pos_hint: {'center_x': .5, 'center_y': .8}
+            size_hint_x: .9
+            hint_text: 'Nome:'
+        MDTextField:
+            pos_hint: {'center_x': .5, 'center_y': .6}
+            size_hint_x: .9
+            hint_text: 'Email:'
+            helper_text_mode: "on_focus"
+
 <SenhaCard>:
     id: card
     orientation: 'vertical'
@@ -113,11 +142,15 @@ class SenhaCard(MDCard):
     def fechar(self):
         self.parent.remove_widget(self)
 
+class TelaCadastro(MDCard):
+    def fechar(self):
+        self.parent.remove_widget(self)
 
 class TelaLogin(FloatLayout):
     def abrir_card(self):
         self.add_widget(SenhaCard())
-
+    def registrar(self):
+            self.add_widget(TelaCadastro())
 
 class MyApp(MDApp):
     def build(self):
