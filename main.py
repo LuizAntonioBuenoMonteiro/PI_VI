@@ -43,7 +43,17 @@ Screen:
             pos_hint: {'center_x': .5, 'center_y': .6}
             size_hint_x: .9
             hint_text: 'Email:'
-            helper_text_mode: "on_focus"
+        MDTextField:
+            pos_hint: {'center_x': .5, 'center_y': .4}
+            size_hint_x: .9
+            hint_text: 'Cidade:'
+        ButtonFocus:
+            pos_hint: {'center_x': .5, 'center_y': .2}
+            size_hint_x: .9
+            text: 'Registrar'
+            focus_color: app.theme_cls.accent_color
+            unfocus_color: app.theme_cls.primary_color     
+                    
 
 <SenhaCard>:
     id: card
@@ -123,6 +133,7 @@ Screen:
         text: 'Cadastrar'
         focus_color: app.theme_cls.accent_color
         unfocus_color: app.theme_cls.primary_color
+        on_release: root.registrar()
     MDLabel:
         pos_hint: {'center_y': .15}
         halign: 'center'
