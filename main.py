@@ -5,6 +5,9 @@ from kivymd.uix.button import MDRaisedButton
 from kivy.lang import Builder
 from kivymd.uix.behaviors import FocusBehavior
 
+#imports para o banco de dados firebase
+import requests
+import json
 
 KV = '''
 Screen:
@@ -36,14 +39,17 @@ Screen:
             on_release: root.fechar()
     MDFloatLayout:
         MDTextField:
+            id: nome_cadastro
             pos_hint: {'center_x': .5, 'center_y': .8}
             size_hint_x: .9
             hint_text: 'Nome:'
         MDTextField:
+            id: email_cadastro
             pos_hint: {'center_x': .5, 'center_y': .6}
             size_hint_x: .9
             hint_text: 'Email:'
         MDTextField:
+            id: cidade_cadastro
             pos_hint: {'center_x': .5, 'center_y': .4}
             size_hint_x: .9
             hint_text: 'Cidade:'
@@ -52,7 +58,8 @@ Screen:
             size_hint_x: .9
             text: 'Registrar'
             focus_color: app.theme_cls.accent_color
-            unfocus_color: app.theme_cls.primary_color     
+            unfocus_color: app.theme_cls.primary_color
+            on_release: root.cadastrarUsuario(nome_cadastro.text, email_cadastro.text, cidade_cadastro.text)       
                     
 
 <SenhaCard>:
@@ -154,8 +161,16 @@ class SenhaCard(MDCard):
         self.parent.remove_widget(self)
 
 class TelaCadastro(MDCard):
+    firebasedb_url = "https://boascompras-1cbe9-default-rtdb.firebaseio.com/.json"
+
     def fechar(self):
         self.parent.remove_widget(self)
+
+    def cadastrarUsuario(self, nome, email, cidade):
+        data = {"Nome": nome, "Email": email, "Cidade": cidade}
+        res = requests.post(url=self.firebasedb_url, json=data)
+        print(res) #manda os dados para o firebase
+        #self.change_screen("tela_login")
 
 class TelaLogin(FloatLayout):
     def abrir_card(self):
