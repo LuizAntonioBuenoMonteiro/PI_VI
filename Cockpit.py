@@ -7,6 +7,12 @@ from kivy.lang import Builder
 from kivymd.uix.behaviors import FocusBehavior
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.screenmanager import Screen, ScreenManager
+from kivy.core.window import Window
+
+#dimensionar tela para tamanho de uma tela de celular
+Window.size = (280, 500)
+
+
 class ButtonFocus(MDRaisedButton, FocusBehavior):
   ...
 
