@@ -1,65 +1,126 @@
-# Menu item in the DrawerList list.
-<ItemDrawer>:
-    theme_text_color: "Custom"
-    on_release: self.parent.set_color_item(self)
-
-    IconLeftWidget:
-        id: icon
-        icon: root.icon
-        theme_text_color: "Custom"
-        text_color: root.text_color
-
-
 <ContentNavigationDrawer>:
     orientation: "vertical"
-    padding: "8dp"
-    spacing: "8dp"
+    FloatLayout:
+        size_hint_y:None
+        height:"200dp"
+        BoxLayout:
+            id:box_image
+            x:root.x
+            pos_hint:{"top":1}
+            FloatLayout:
+                #Imagem de fundo
 
-    AnchorLayout:
-        anchor_x: "left"
-        size_hint_y: None
-        height: avatar.height
+                FitImage:
+                    pos_hint:{'center_x':.5,'center_y':.5}
+                    source:"./imagens/carrinho0.png"
 
-        Image:
-            id: avatar
-            size_hint: None, None
-            size: "56dp", "56dp"
-            source: "imagens/carrinho0.png"
 
-    MDLabel:
-        text: "App Boas Compras"
-        font_style: "Button"
-        adaptive_height: True
 
+        MDLabel:
+            text:""
+            size_hint_y:None
+            height:self.texture_size[1]
+            #posição label
+            x:root.x + 10
+            y: root.height - box_image.height + dp(10)
+
+
+
+#botões
 
     ScrollView:
 
-        DrawerList:
-            id: md_list
+        MDList:
 
+            OneLineIconListItem:
+                text: "Categorias/Produtos"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "scr 1"
+
+                IconLeftWidget:
+                    icon:"cart-variant"
+
+
+            OneLineIconListItem:
+                text: "Minha Lista de Compras"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "scr 2"
+
+                IconLeftWidget:
+                    icon: "ballot-outline"
+
+
+            OneLineIconListItem:
+                text: "Cadastrar Novos Produtos"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "scr 3"
+
+                IconLeftWidget:
+                    icon:"barcode"
+
+
+            OneLineIconListItem:
+                text: "Meu Cadastro"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "scr 4"
+
+                IconLeftWidget:
+                    icon:"account-circle"
 
 
 MDScreen:
 
+    MDToolbar:
+        id: toolbar
+        pos_hint: {"top": 1}
+        elevation: 10
+        title: "App Boas Compras"
+        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+
     MDNavigationLayout:
+        x: toolbar.height
 
         ScreenManager:
+            id: screen_manager
 
             MDScreen:
+                name: "scr 1"
 
-                MDBoxLayout:
-                    orientation: 'vertical'
+                MDLabel:
+                    text: "Categorias/Produtos"
+                    halign: "center"
 
-                    MDToolbar:
-                        title: "App Boas Compras"
-                        elevation: 10
-                        left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+            MDScreen:
+                name: "scr 2"
 
-                    Widget:
+                MDLabel:
+                    text: "Minha Lista de Compras"
+                    halign: "center"
 
+
+
+            MDScreen:
+                name: "scr 3"
+
+                MDLabel:
+                    text: "Cadastrar Novos Produtos"
+                    halign: "center"
+
+
+            MDScreen:
+                name: "scr 4"
+
+                MDLabel:
+                    text: "Meu Cadastro"
+                    halign: "center"
 
         MDNavigationDrawer:
             id: nav_drawer
 
             ContentNavigationDrawer:
-                id: content_drawer
+                screen_manager: screen_manager
+                nav_drawer: nav_drawer
